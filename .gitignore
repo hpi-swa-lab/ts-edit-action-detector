@@ -1,0 +1,8 @@
+/build/
+
+# Directory to store sample input files in
+/local/
+/.gradle/
+
+# Local gradle properties
+local.properties
