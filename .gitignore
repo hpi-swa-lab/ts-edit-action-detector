@@ -1,8 +1,5 @@
 /build/
 
-.idea
-*.iml
-
 # Directory to store sample input files in
 /local/
 /.gradle/
