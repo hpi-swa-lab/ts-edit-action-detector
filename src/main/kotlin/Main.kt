@@ -4,8 +4,20 @@ import com.github.gumtreediff.io.TreeIoUtils
 import com.github.gumtreediff.matchers.MappingStore
 import com.github.gumtreediff.matchers.Matcher
 import com.github.gumtreediff.matchers.Matchers
+import gr.uom.java.xmi.UMLModelASTReader
+import java.io.File
+
 
 fun main(args: Array<String>) {
+    val others = args.sliceArray(1 until args.size)
+    if (args[0] === "gumtree") {
+        useGumtree(others)
+    } else {
+        useRefactoringMiner(others)
+    }
+}
+
+private fun useGumtree(args: Array<String>) {
     println("Files to load: ${args.joinToString()}")
 
     println("TODO: Do cool stuff here")
@@ -29,4 +41,30 @@ fun main(args: Array<String>) {
 
         println("TODO: Experiment with mappings here")
     }
+}
+
+private fun useRefactoringMiner(args: Array<String>) {
+    println("Files to load: ${args.joinToString()}")
+
+    val model1 = UMLModelASTReader(File(args[0]).absoluteFile).umlModel
+    val model2 = UMLModelASTReader(File(args[1]).absoluteFile).umlModel
+    val modelDiff = model1.diff(model2)
+    val refactorings = modelDiff.refactorings
+    println(refactorings.toString())
+
+//    val gitService = GitServiceImpl()
+//    val miner = GitHistoryRefactoringMinerImpl()
+//
+//    val repo = gitService.cloneIfNotExists(
+//            "tmp/refactoring-toy-example",
+//    "https://github.com/danilofes/refactoring-toy-example.git")
+//
+//    miner.detectAll(repo, "master", object: RefactoringHandler() {
+//        override fun handle(commitId: String, refactorings: List<Refactoring>) {
+//            println("Refactorings at $commitId")
+//            for (ref in refactorings) {
+//                println(ref.toString())
+//            }
+//        }
+//    });
 }

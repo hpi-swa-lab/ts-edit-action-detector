@@ -2,7 +2,11 @@
 ## Setup and Run
 Clone this repository and execute the following command in its root directory to compare two files named `ExampleOld.java` and `ExampleNew.java`
 
-`./gradlew run --args="ExampleOld.java ExampleNew.java"`
+`./gradlew run --args="gumtree local/old/Example.java local/new/Example.java"`
+
+or run
+
+`./gradlew run --args="refactoringminer local/old local/new"`
 
 ## Interesting links
 - [RefactoringMiner](https://github.com/tsantalis/RefactoringMiner): Action Detector for Java/Python
