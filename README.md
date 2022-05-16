@@ -29,3 +29,22 @@ or run
 - Recognize sequences that can be executed with shortcuts
 - Preemptive recognition of sequences
 
+## What are Changes?
+
+### Manual Changes:
+
+#### https://github.com/tsantalis/RefactoringMiner/commit/6ea5f15e5e1f3131ccd062c660f7832f760b348a
+- UMLOperationBodyMapper#2157:
+  - Replace Expr1 with Expr2: if(a) -> if(b)
+  - Encapsulate Expr1 into Expr2: if(a) -> if(b(a))
+  - Encapsulate Expr1 into Operation1 with Expr2: if(a) -> if(or(a, b))
+- VariableReplacementAnalysis#1957
+  - Remove Statement1, add Statement2
+  - Encapsulate Stat1 into Stat2
+
+#### https://github.com/danilofes/refactoring-toy-example/commit/36287f7c3b09eff78395267a3ac0d7da067863fd
+- Refactroring Miner Output:
+  - Pull Up Attribute	private age : int from class org.animals.Labrador to private age : int from class org.animals.Dog
+  - Pull Up Attribute	private age : int from class org.animals.Poodle to private age : int from class org.animals.Dog
+  - Pull Up Method	public getAge() : int from class org.animals.Labrador to public getAge() : int from class org.animals.Dog
+  - Pull Up Method	public getAge() : int from class org.animals.Poodle to public getAge() : int from class org.animals.Dog

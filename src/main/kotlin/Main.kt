@@ -5,10 +5,19 @@ import com.github.gumtreediff.matchers.MappingStore
 import com.github.gumtreediff.matchers.Matcher
 import com.github.gumtreediff.matchers.Matchers
 import gr.uom.java.xmi.UMLModelASTReader
+import org.apache.log4j.BasicConfigurator
+import org.refactoringminer.api.Refactoring
+import org.refactoringminer.api.RefactoringHandler
+import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl
+import org.refactoringminer.util.GitServiceImpl
 import java.io.File
 
 
 fun main(args: Array<String>) {
+    BasicConfigurator.configure()
+    useRefMinerOnOwnRepo()
+    return
+
     val others = args.sliceArray(1 until args.size)
     if (args[0] === "gumtree") {
         useGumtree(others)
@@ -52,19 +61,22 @@ private fun useRefactoringMiner(args: Array<String>) {
     val refactorings = modelDiff.refactorings
     println(refactorings.toString())
 
-//    val gitService = GitServiceImpl()
-//    val miner = GitHistoryRefactoringMinerImpl()
-//
-//    val repo = gitService.cloneIfNotExists(
-//            "tmp/refactoring-toy-example",
-//    "https://github.com/danilofes/refactoring-toy-example.git")
-//
-//    miner.detectAll(repo, "master", object: RefactoringHandler() {
-//        override fun handle(commitId: String, refactorings: List<Refactoring>) {
-//            println("Refactorings at $commitId")
-//            for (ref in refactorings) {
-//                println(ref.toString())
-//            }
-//        }
-//    });
+}
+
+private fun useRefMinerOnOwnRepo() {
+    val gitService = GitServiceImpl()
+    val miner = GitHistoryRefactoringMinerImpl()
+
+    val repo = gitService.cloneIfNotExists(
+            "tmp/ref-toy-example",
+        "https://github.com/danilofes/refactoring-toy-example.git")
+
+    miner.detectAtCommit(repo, "36287f7c3b09eff78395267a3ac0d7da067863fd", object: RefactoringHandler() {
+        override fun handle(commitId: String, refactorings: List<Refactoring>) {
+            println("Refactorings at $commitId")
+            for (ref in refactorings) {
+                println(ref.toString())
+            }
+        }
+    });
 }

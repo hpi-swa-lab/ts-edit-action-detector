@@ -15,6 +15,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
 
+    implementation("org.slf4j:slf4j-log4j12:1.7.32")
     implementation("com.github.tsantalis:refactoring-miner:2.2.0")
     implementation("org.eclipse.jgit:org.eclipse.jgit:6.1.0.202203080745-r")
     implementation("com.github.gumtreediff:core:3.0.0")
