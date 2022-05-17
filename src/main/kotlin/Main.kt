@@ -1,3 +1,7 @@
+import com.github.gumtreediff.actions.ChawatheScriptGenerator
+import com.github.gumtreediff.actions.EditScript
+import com.github.gumtreediff.actions.EditScriptGenerator
+import com.github.gumtreediff.actions.SimplifiedChawatheScriptGenerator
 import com.github.gumtreediff.client.Run
 import com.github.gumtreediff.gen.TreeGenerators
 import com.github.gumtreediff.io.TreeIoUtils
@@ -15,12 +19,12 @@ import java.io.File
 
 fun main(args: Array<String>) {
 //    BasicConfigurator.configure()
-    useRefMinerOnOwnRepo()
-    return
 
     val others = args.sliceArray(1 until args.size)
-    if (args[0] === "gumtree") {
+    if (args[0] == "gumtree") {
         useGumtree(others)
+    } else if (args[0] == "refactoringminer" && others.isEmpty()) {
+        useRefMinerOnOwnRepo()
     } else {
         useRefactoringMiner(others)
     }
@@ -48,7 +52,20 @@ private fun useGumtree(args: Array<String>) {
     if (contexts.size > 1) {
         val mappings: MappingStore = defaultMatcher.match(contexts[0].root, contexts[1].root) // computes the mappings between the trees
 
-        println("TODO: Experiment with mappings here")
+        println("\n============ Mappings ============")
+        mappings
+            .filterNot { it.first.pos == it.second.pos && it.first.endPos == it.second.endPos }
+            .forEach { println("${it.first} : ${it.second}") }
+
+        println("\n============ Tree Actions ============")
+        val extendedEditScriptGenerator: EditScriptGenerator = ChawatheScriptGenerator()
+        val fullActions: EditScript = extendedEditScriptGenerator.computeActions(mappings)
+        fullActions.forEach { println("${it.name}: ${it.node}") }
+
+        println("\n============ Simplified Tree Actions ============")
+        val editScriptGenerator: EditScriptGenerator = SimplifiedChawatheScriptGenerator()
+        val actions: EditScript = editScriptGenerator.computeActions(mappings)
+        actions.forEach { println("${it.name}: ${it.node}") }
     }
 }
 
@@ -85,5 +102,5 @@ private fun useRefMinerOnOwnRepo() {
             }
             println()
         }
-    });
+    })
 }
