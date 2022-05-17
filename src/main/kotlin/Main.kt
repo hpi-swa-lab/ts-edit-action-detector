@@ -14,7 +14,7 @@ import java.io.File
 
 
 fun main(args: Array<String>) {
-    BasicConfigurator.configure()
+//    BasicConfigurator.configure()
     useRefMinerOnOwnRepo()
     return
 
@@ -68,15 +68,22 @@ private fun useRefMinerOnOwnRepo() {
     val miner = GitHistoryRefactoringMinerImpl()
 
     val repo = gitService.cloneIfNotExists(
-            "tmp/ref-toy-example",
+            "tmp/ref-toy-example2",
         "https://github.com/danilofes/refactoring-toy-example.git")
 
-    miner.detectAtCommit(repo, "36287f7c3b09eff78395267a3ac0d7da067863fd", object: RefactoringHandler() {
+    val delAttribs = "f3b628f8f9c71a2cdfa052025c4a1ed78ee4c45d"
+    val pullUp = "36287f7c3b09eff78395267a3ac0d7da067863fd"
+    val reateToString = "5849e143567474f037950f005d994729de0775fc"
+
+    miner.detectAll(repo, "master", object: RefactoringHandler() {
         override fun handle(commitId: String, refactorings: List<Refactoring>) {
-            println("Refactorings at $commitId")
+            if (refactorings.isNotEmpty()) {
+                println("\n####    Refactorings at $commitId")
+            }
             for (ref in refactorings) {
                 println(ref.toString())
             }
+            println()
         }
     });
 }
