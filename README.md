@@ -1,8 +1,10 @@
 # Edit Action Detection
 ## Setup and Run
+Clone [Gumtree](https://github.com/GumTreeDiff/gumtree/tree/194393c98caa0a360c3f604786b6c552b714ef9c)
+
 Clone this repository and execute the following command in its root directory to compare two files named `ExampleOld.java` and `ExampleNew.java`
 
-`./gradlew run --args="gumtree local/old/Example.java local/new/Example.java"`
+`./gradlew run --args="gumtree local/old/Example.java local/new/Example.java /home/paul/dev/uni/tree-sitter-parser/tree-sitter-parser.py"`
 
 or run
 
