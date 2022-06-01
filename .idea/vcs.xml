@@ -2,5 +2,16 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/gumtree" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tree-sitter-parser" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tree-sitter-parser/tree-sitter-c" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tree-sitter-parser/tree-sitter-java" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tree-sitter-parser/tree-sitter-javascript" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tree-sitter-parser/tree-sitter-ocaml" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tree-sitter-parser/tree-sitter-php" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tree-sitter-parser/tree-sitter-python" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tree-sitter-parser/tree-sitter-r" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tree-sitter-parser/tree-sitter-ruby" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tree-sitter-parser/tree-sitter-typescript" vcs="Git" />
   </component>
 </project>

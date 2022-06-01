@@ -1,10 +1,13 @@
 # Edit Action Detection
 ## Setup and Run
-Clone [Gumtree](https://github.com/GumTreeDiff/gumtree/tree/194393c98caa0a360c3f604786b6c552b714ef9c)
+1. Clone this repo
+2. Clone [Gumtree](https://github.com/GumTreeDiff/gumtree), checkout `194393c98caa0a360c3f604786b6c552b714ef9c` and run the tasks `:core:publishToMavenLocal`, `:client:publishToMavenLocal` and `:gen.treesitter:publishToMavenLocal`
+3. Clone [Tree-Sitter-Parser](https://github.com/GumTreeDiff/tree-sitter-parser) with the `--recursive-submodules` flag and run `pip3 install tree_sitter`
 
-Clone this repository and execute the following command in its root directory to compare two files named `ExampleOld.java` and `ExampleNew.java`
+Execute the following command in its root directory to compare two files named `ExampleOld.java` and `ExampleNew.java`
+(Replace the path to tree-sitter)
 
-`./gradlew run --args="gumtree local/old/Example.java local/new/Example.java /home/paul/dev/uni/tree-sitter-parser/tree-sitter-parser.py"`
+`
 
 or run
 
