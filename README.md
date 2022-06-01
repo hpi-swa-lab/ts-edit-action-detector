@@ -13,6 +13,10 @@ or run
 
 `./gradlew run --args="refactoringminer local/old local/new"`
 
+or (to run refactoringminer on remote sample repo)
+
+`./gradlew run --args="refactoringminer"`
+
 ## Interesting links
 - [RefactoringMiner](https://github.com/tsantalis/RefactoringMiner): Action Detector for Java/Python
 - [TreeSitter](https://tree-sitter.github.io/tree-sitter/): Parser
