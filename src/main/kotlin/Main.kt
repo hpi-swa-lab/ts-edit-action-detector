@@ -37,19 +37,17 @@ private fun useGumtree(args: Array<String>) {
 //
 //    val contexts = args.map { TreeGenerators.getInstance().getTree(it) } // retrieves and applies the default parser for the files
 //
-//    contexts.forEach { context ->
-//        println(context.root.toTreeString())
-//
-//        println("\n============ JSON ============")
-//        println(TreeIoUtils.toJson(context).toString()) // displays the tree in JSON syntax
-//    }
+////    contexts.forEach { context ->
+////        println(context.root.toTreeString())
+////
+////        println("\n============ JSON ============")
+////        println(TreeIoUtils.toJson(context).toString()) // displays the tree in JSON syntax
+////    }
 //
 //    val defaultMatcher: Matcher = Matchers.getInstance().matcher // retrieves the default matcher
 //
 //    if (contexts.size > 1) {
 //        val mappings: MappingStore = defaultMatcher.match(contexts[0].root, contexts[1].root) // computes the mappings between the trees
-//
-//        println("TODO: Experiment with mappings here")
 //    }
 }
 
