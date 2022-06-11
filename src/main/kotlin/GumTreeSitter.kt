@@ -1,12 +1,8 @@
-import com.github.gumtreediff.actions.SimplifiedChawatheScriptGenerator
-import com.github.gumtreediff.client.Run
 import com.github.gumtreediff.gen.treesitter.JavaTreeSitterTreeGenerator
-import com.github.gumtreediff.io.ActionsIoUtils
 import com.github.gumtreediff.matchers.Mapping
 import com.github.gumtreediff.matchers.Matchers
 import com.github.gumtreediff.tree.Tree
 import java.io.File
-import java.util.function.Predicate
 
 object GumTreeSitter {
     fun run(f1: String, f2: String, treeSitterPath: String) {
@@ -21,17 +17,27 @@ object GumTreeSitter {
         val c2 = File(f2).readText()
 
         val mappings = matcher.match(r1, r2)
-        val editScriptGenerator = SimplifiedChawatheScriptGenerator()
-        val actions = editScriptGenerator.computeActions(mappings)
-        for (action in actions) {
-            println(action)
-            println()
-            println(action.node.text(c1))
-            println()
+
+        println(" - Actions from Node Insertions / Deletions - ")
+        val nodeActions = GranularScriptGenerator().computeActions(mappings).asList()
+        for (action in nodeActions) {
+            println(action.displayName)
+            // println(action)
+            // println(action.node.text(c1))
         }
-        println()
         println("#############################")
-        println(ActionsIoUtils.toText(ctx, actions, mappings))
+
+        val treeActions = SimpleScriptGenerator().computeActions(mappings).asList()
+        println(" - Actions from Tree Insertions / Deletions - ")
+        for (action in treeActions) {
+            println(action.displayName)
+            // println(action)
+            // println(action.node.text(c1))
+        }
+
+        println()
+
+        // println(ActionsIoUtils.toText(ctx, actions, mappings))
     }
 
 }

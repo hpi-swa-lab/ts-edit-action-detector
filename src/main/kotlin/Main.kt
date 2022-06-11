@@ -1,11 +1,4 @@
-import com.github.gumtreediff.client.Run
-import com.github.gumtreediff.gen.TreeGenerators
-import com.github.gumtreediff.io.TreeIoUtils
-import com.github.gumtreediff.matchers.MappingStore
-import com.github.gumtreediff.matchers.Matcher
-import com.github.gumtreediff.matchers.Matchers
 import gr.uom.java.xmi.UMLModelASTReader
-import org.apache.log4j.BasicConfigurator
 import org.refactoringminer.api.Refactoring
 import org.refactoringminer.api.RefactoringHandler
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl
@@ -84,5 +77,5 @@ private fun useRefMinerOnOwnRepo() {
             }
             println()
         }
-    });
+    })
 }
